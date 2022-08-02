@@ -1,7 +1,6 @@
 #include "Account.hpp"
 #include <iostream>
 #include <time.h>
-#include <string>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -29,19 +28,19 @@ Account::~Account(void) {
 }
 
 int 	Account::getNbAccounts(void) {
-	return (Account::_totalAmount);
+	return Account::_totalAmount;
 }
 
 int		Account::getTotalAmount(void) {
-	return (Account::_totalAmount);
+	return Account::_totalAmount;
 }
 
 int		Account::getNbDeposits(void) {
-	return (Account::_totalNbDeposits);
+	return Account::_totalNbDeposits;
 }
 
 int		Account::getNbWithdrawals(void) {
-	return (Account::_totalNbWithdrawals);
+	return Account::_totalNbWithdrawals;
 }
 
 void	Account::displayAccountsInfos(void) {
@@ -88,16 +87,16 @@ bool	Account::makeWithdrawal( int withdrawal ) {
 				  << ";nb_withdrawals:" << this->_nbWithdrawals << std::endl;
 		this->_amount -= withdrawal;
 		Account::_totalNbWithdrawals++;
+		return 1;
 	}
-	else {
-		std::cout << "index:" << this->_accountIndex
-				  << ";p_amount:" << this->_accountIndex
-				  << ";withdrawal:refused" << std::endl;
-	}
+	std::cout << "index:" << this->_accountIndex
+			  << ";p_amount:" << this->_accountIndex
+			  << ";withdrawal:refused" << std::endl;
+	return 0;
 }
 
 int		Account::checkAmount( void ) const {
-
+	return this->_amount;
 }
 
 void	Account::displayStatus( void ) const {

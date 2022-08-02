@@ -48,7 +48,7 @@ void	PhoneBook::add(void) {
 
 	Contact 	record;
 
-	std::cin.ignore();
+//	std::cin.ignore();
 	std::cout << "\033[3;36mfirst_name: \033[3;38m";
 	std::getline(std::cin, record.first_name);
 	std::cout << "\033[3;36mlast_name:  \033[3;38m";

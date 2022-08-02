@@ -4,7 +4,7 @@
 
 int main(void) {
 
-	PhoneBook 	pb;
+	PhoneBook 	myAwesomePhoneBook;
 	std::string	command;
 
 	std::cout << "\033[3;35mCurrently you are in an empty PhoneBook\033[0m"
@@ -16,17 +16,16 @@ int main(void) {
 				  << "'search' - search the contact through the PhoneBook;" << std::endl
 				  << "'exit' - leave current session.\033[0m" << std::endl
 				  << "\033[3m>> ";
-		std::cin >> command;
+		std::getline(std::cin, command);
 		std::cout << "\033[0m";
 
 		if (std::cin.eof())
 			break ;
-
-		if (command == "add")
-			pb.add();
-		else if (command == "search")
-			pb.search();
-		else if (command == "exit")
+		if (command == "add" || command == "ADD")
+			myAwesomePhoneBook.add();
+		else if (command == "search" || command == "SEARCH")
+			myAwesomePhoneBook.search();
+		else if (command == "exit" || command == "EXIT")
 			break ;
 		else
 			std::cout << "\033[3;35mInvalid command\033[0m"
