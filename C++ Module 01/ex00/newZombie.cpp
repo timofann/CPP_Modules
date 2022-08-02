@@ -8,6 +8,6 @@ Zombie*	newZombie(std::string _name) {
 	}
 	catch (std::bad_alloc err) {
 		std::cerr << "Bad allocation" << std::endl;
-		return (NULL);
+		return NULL;
 	}
 }
