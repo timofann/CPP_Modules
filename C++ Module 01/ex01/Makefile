@@ -1,8 +1,8 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
 NAME	=	MoarBrainz
-HEADERS	=
-SRC		=
+HEADERS	=	Zombie.h
+SRC		=	Zombie.cpp zombieHorde.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
 .PHONY : all clean fclean re
