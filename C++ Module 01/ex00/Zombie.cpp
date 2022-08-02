@@ -5,7 +5,7 @@
 Zombie::Zombie(void) {
 	std::cout << "\033[3;37m"
 			  << "Zombie default constructor called"
-			  << "\033[0m" << std::endl << std::endl;
+			  << "\033[0m" << std::endl;
 }
 
 Zombie::Zombie(std::string _name) {
@@ -22,4 +22,8 @@ Zombie::~Zombie(void) {
 			  << "Zombie destructor called for the next instance:"
 			  << "\033[0m" << std::endl;
 	std::cout << "ZombieName: " << this->name << std::endl;
+}
+
+void	Zombie::announce(void) {
+	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
