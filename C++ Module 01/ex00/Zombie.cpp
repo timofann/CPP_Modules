@@ -13,17 +13,20 @@ Zombie::Zombie(std::string _name) {
 
 	std::cout << "\033[3;37m"
 			  << "Zombie constructor called for the next instance:"
-			  << "\033[0m" << std::endl;
-	std::cout << "ZombieName: " << this->name << std::endl;
+			  << std::endl;
+	std::cout << "ZombieName: " << this->name
+	          << "\033[0m" << std::endl;
 }
 
 Zombie::~Zombie(void) {
 	std::cout << "\033[3;37m"
 			  << "Zombie destructor called for the next instance:"
-			  << "\033[0m" << std::endl;
-	std::cout << "ZombieName: " << this->name << std::endl;
+			  << std::endl;
+	std::cout << "ZombieName: " << this->name
+	          << "\033[0m" << std::endl;
 }
 
 void	Zombie::announce(void) {
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+	std::cout << "\033[3;31m" << this->name << ": BraiiiiiiinnnzzzZ..."
+			  << "\033[0m" << std::endl;
 }
