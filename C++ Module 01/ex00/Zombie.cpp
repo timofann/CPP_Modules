@@ -1,4 +1,7 @@
-//
-// Created by Desmond Edelmira on 8/2/22.
-//
+#include "Zombie.h"
 
+Zombie::Zombie(void) {}
+
+Zombie::Zombie(std::string _name) {}
+
+Zombie::~Zombie(void) {}
