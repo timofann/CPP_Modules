@@ -59,3 +59,43 @@ void Contact::printInfo(void) {
 	std::cout << "|" << table_cell(this->darkest_secret, &cell);
 	std::cout << "|" << "\033[0m" << std::endl;
 }
+
+std::string	Contact::getFirstName(void) {
+	return this->first_name;
+}
+
+std::string	Contact::getLastName(void) {
+	return this->last_name;
+}
+
+std::string	Contact::getNickname(void) {
+	return this->nickname;
+}
+
+std::string	Contact::getPhoneNumber(void) {
+	return this->phone_number;
+}
+
+std::string	Contact::getDarkestSecret(void) {
+	return this->darkest_secret;
+}
+
+void		Contact::setFirstName(std::string _first_name) {
+	this->first_name = _first_name;
+}
+
+void		Contact::setLastName(std::string _last_name) {
+	this->last_name = _last_name;
+}
+
+void		Contact::setNickname(std::string _nickname) {
+	this->nickname = _nickname;
+}
+
+void		Contact::setPhoneNumber(std::string _phone_number) {
+	this->phone_number = _phone_number;
+}
+
+void		Contact::setDarkestSecret(std::string _darkest_secret) {
+	this->darkest_secret = _darkest_secret;
+}

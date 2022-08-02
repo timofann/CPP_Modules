@@ -3,7 +3,6 @@
 #include "PhoneBook.h"
 #include "Contact.h"
 #include "table_cell.h"
-#include <stdlib.h>
 
 size_t	PhoneBook::id_counter = 0;
 
@@ -47,18 +46,23 @@ void	PhoneBook::printInfo(void) {
 void	PhoneBook::add(void) {
 
 	Contact 	record;
+	std::string	new_field;
 
-//	std::cin.ignore();
 	std::cout << "\033[3;36mfirst_name: \033[3;38m";
-	std::getline(std::cin, record.first_name);
+	std::getline(std::cin, new_field);
+	record.setFirstName(new_field);
 	std::cout << "\033[3;36mlast_name:  \033[3;38m";
-	std::getline(std::cin, record.last_name);
+	std::getline(std::cin, new_field);
+	record.setLastName(new_field);
 	std::cout << "\033[3;36mnickname:  \033[3;38m";
-	std::getline(std::cin, record.nickname);
+	std::getline(std::cin, new_field);
+	record.setNickname(new_field);
 	std::cout << "\033[3;36mphone_number:  \033[3;38m";
-	std::getline(std::cin, record.phone_number);
+	std::getline(std::cin, new_field);
+	record.setPhoneNumber(new_field);
 	std::cout << "\033[3;36mdarkest_secret:  \033[3;38m";
-	std::getline(std::cin, record.darkest_secret);
+	std::getline(std::cin, new_field);
+	record.setDarkestSecret(new_field);
 	std::cout << "\033[0m";
 
 	if (this->records_cnt < 8) {
@@ -99,9 +103,9 @@ void	PhoneBook::search(void) {
 		for (size_t i = 0; i < this->records_cnt; i++) {
 
 			std::cout << "|" << table_cell(std::to_string(i), &cell);
-			std::cout << "|" << table_cell(this->records[i].first_name, &cell);
-			std::cout << "|" << table_cell(this->records[i].last_name, &cell);
-			std::cout << "|" << table_cell(this->records[i].nickname, &cell);
+			std::cout << "|" << table_cell(this->records[i].getFirstName(), &cell);
+			std::cout << "|" << table_cell(this->records[i].getLastName(), &cell);
+			std::cout << "|" << table_cell(this->records[i].getNickname(), &cell);
 			std::cout << "|" << std::endl;
 		}
 
@@ -121,15 +125,15 @@ void	PhoneBook::search(void) {
 
 				std::cout << std::endl;
 				std::cout << "first_name: "
-						  << this->records[index_long].first_name << std::endl;
+						  << this->records[index_long].getFirstName() << std::endl;
 				std::cout << "last_name: "
-						  << this->records[index_long].last_name << std::endl;
+						  << this->records[index_long].getLastName() << std::endl;
 				std::cout << "nickname: "
-						  << this->records[index_long].nickname << std::endl;
+						  << this->records[index_long].getNickname() << std::endl;
 				std::cout << "phone_number: "
-						  << this->records[index_long].phone_number << std::endl;
+						  << this->records[index_long].getPhoneNumber() << std::endl;
 				std::cout << "darkest_secret: "
-						  << this->records[index_long].darkest_secret << std::endl;
+						  << this->records[index_long].getDarkestSecret() << std::endl;
 				std::cout << "\033[0m";
 			}
 		}
