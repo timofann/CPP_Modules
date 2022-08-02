@@ -120,6 +120,7 @@ void	PhoneBook::search(void) {
 				          << this->records_cnt - 1
 						  << " contacts\033[0m"
 						  << std::endl;
+				std::cin.ignore();
 			}
 			else {
 
@@ -140,10 +141,12 @@ void	PhoneBook::search(void) {
 		catch (std::invalid_argument err) {
 
 			std::cout << "Index should has type integer\033[0m" << std::endl;
+			std::cin.ignore();
 		}
 		catch (std::out_of_range err) {
 
 			std::cout << "Overflow_error is catched\033[0m" << std::endl;
+			std::cin.ignore();
 		}
 	}
 	else {
