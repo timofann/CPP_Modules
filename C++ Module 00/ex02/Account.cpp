@@ -1,5 +1,7 @@
 #include "Account.hpp"
 #include <iostream>
+#include <time.h>
+#include <string>
 
 int	Account::_nbAccounts = 0;
 int	Account::_totalAmount = 0;
@@ -26,13 +28,21 @@ Account::~Account(void) {
 			  << ";closed" << std::endl;
 }
 
-int Account::getNbAccounts(void) {}
+int 	Account::getNbAccounts(void) {
+	return (Account::_totalAmount);
+}
 
-int	Account::getTotalAmount(void) {}
+int		Account::getTotalAmount(void) {
+	return (Account::_totalAmount);
+}
 
-int	Account::getNbDeposits(void) {}
+int		Account::getNbDeposits(void) {
+	return (Account::_totalNbDeposits);
+}
 
-int	Account::getNbWithdrawals(void) {}
+int		Account::getNbWithdrawals(void) {
+	return (Account::_totalNbWithdrawals);
+}
 
 void	Account::displayAccountsInfos(void) {
 	Account::_displayTimestamp();
@@ -43,12 +53,19 @@ void	Account::displayAccountsInfos(void) {
 }
 
 void	Account::_displayTimestamp(void) {
-
-	std::time_get<char>();
-	std::cout << "[timestamp_time] ";
+	std::time_t now = std::time(NULL);
+	std::tm *ltm = std::localtime(&now);
+	std::string timestamp = "["
+			+ std::to_string(1900 + ltm->tm_year)
+			+ std::to_string(101 + ltm->tm_mon).substr(1, 2)
+			+ std::to_string(100 + ltm->tm_mday).substr(1, 2) + "_"
+			+ std::to_string(101 + ltm->tm_hour).substr(1, 2)
+			+ std::to_string(101 + ltm->tm_min).substr(1, 2)
+			+ std::to_string(101 + ltm->tm_sec).substr(1, 2) + "] ";
+	std::cout << timestamp;
 }
 
-void		Account::makeDeposit( int deposit ) {
+void	Account::makeDeposit( int deposit ) {
 	Account::_displayTimestamp();
 	this->_nbDeposits++;
 	std::cout << "index:" << this->_accountIndex
@@ -60,7 +77,7 @@ void		Account::makeDeposit( int deposit ) {
 	Account::_totalNbDeposits++;
 }
 
-bool		Account::makeWithdrawal( int withdrawal ) {
+bool	Account::makeWithdrawal( int withdrawal ) {
 	Account::_displayTimestamp();
 	if (withdrawal <= this->_amount) {
 		this->_nbWithdrawals++;
@@ -79,9 +96,11 @@ bool		Account::makeWithdrawal( int withdrawal ) {
 	}
 }
 
-int			Account::checkAmount( void ) const {}
+int		Account::checkAmount( void ) const {
 
-void		Account::displayStatus( void ) const {
+}
+
+void	Account::displayStatus( void ) const {
 	Account::_displayTimestamp();
 	std::cout << "index:" << this->_accountIndex
 	          << ";amount:" << this->_amount
