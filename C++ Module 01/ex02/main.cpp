@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/03 20:52:43 by dedelmir          #+#    #+#             */
+/*   Updated: 2022/08/03 20:52:43 by dedelmir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <string>
 #include <iostream>
 
@@ -16,4 +28,3 @@ int	main(void) {
 	std::cout << "stringPTR: " << *stringPTR << std::endl;
 	std::cout << "stringREF: " << stringREF << std::endl;
 }
-

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/03 20:53:04 by dedelmir          #+#    #+#             */
+/*   Updated: 2022/08/03 20:53:04 by dedelmir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "HumanB.h"
 #include "Weapon.h"
 #include <iostream>
@@ -11,7 +23,7 @@ HumanB::HumanB(void) {
 
 HumanB::HumanB(std::string _name, Weapon _weapon) {
 	this->name = _name;
-	this->weapon.setType(_weapon);
+	this->weapon = _weapon;
 	std::cout << "\033[3;37m"
 			  << "HumanB constructor called for the next instance:"
 			  << std::endl;
@@ -41,7 +53,7 @@ HumanB::~HumanB(void) {
 }
 
 void	HumanB::setWeapon(Weapon _weapon) {
-	this->weapon.setType(_weapon.getType());
+	this->weapon = _weapon;
 }
 
 void HumanB::attack(void) {

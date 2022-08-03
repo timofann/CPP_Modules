@@ -1,14 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/03 20:52:51 by dedelmir          #+#    #+#             */
+/*   Updated: 2022/08/03 20:52:51 by dedelmir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "HumanA.h"
 #include "Weapon.h"
 #include <iostream>
-
-HumanA::HumanA(void) {
-	std::cout << "\033[3;37m"
-			  << "HumanA default constructor called"
-			  << "\033[0m" << std::endl;
-	this->weapon = Weapon("");
-	this->name = "";
-}
 
 HumanA::HumanA(std::string _name, Weapon _weapon) {
 	this->name = _name;
@@ -32,8 +36,8 @@ HumanA::~HumanA(void) {
 			  << "\033[0m" << std::endl;
 }
 
-void	setWeapon(Weapon _weapon) {
-
+void	HumanA::setWeapon(Weapon _weapon) {
+	this->weapon = _weapon;
 }
 
 void HumanA::attack(void) {
