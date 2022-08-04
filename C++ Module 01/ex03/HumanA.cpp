@@ -14,9 +14,8 @@
 #include "Weapon.h"
 #include <iostream>
 
-HumanA::HumanA(std::string _name, Weapon _weapon) {
+HumanA::HumanA(std::string _name, Weapon &_weapon) : weapon(_weapon) {
 	this->name = _name;
-	this->weapon = _weapon;
 	std::cout << "\033[3;37m"
 			  << "HumanA constructor called for the next instance:"
 			  << std::endl;
@@ -34,10 +33,6 @@ HumanA::~HumanA(void) {
 			  << std::endl;
 	std::cout << "WeaponType: " << this->weapon.getType()
 			  << "\033[0m" << std::endl;
-}
-
-void	HumanA::setWeapon(Weapon _weapon) {
-	this->weapon = _weapon;
 }
 
 void HumanA::attack(void) {
