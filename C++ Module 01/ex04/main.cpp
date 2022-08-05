@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <string>
 #include <fstream>
 #include <iostream>
-#include <string>
 
 bool	open_files(std::string infile, std::string outfile,
 				   std::ifstream &fin, std::ofstream &fout) {
