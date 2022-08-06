@@ -1,6 +1,6 @@
 CC				=	c++
 CFLAGS			= 	-Wall -Wextra -Werror -std=c++98
-NAME			=	TheJobOfYourDreams
+NAME			=	theJobOfYourDreams
 HEADERS			=	Account.hpp
 SRC				=	Account.cpp tests.cpp
 OBJ				=	$(SRC:.cpp=.o)

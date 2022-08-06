@@ -1,6 +1,6 @@
 CC				=	c++
 CFLAGS			= 	-Wall -Wextra -Werror -std=c++98
-NAME			=	MyAwesomePhoneBook
+NAME			=	myAwesomePhoneBook
 HEADERS			=	Contact.h PhoneBook.h table_cell.h
 SRC				=	Contact.cpp PhoneBook.cpp table_cell.cpp main.cpp
 OBJ				=	$(SRC:.cpp=.o)

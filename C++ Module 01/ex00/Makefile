@@ -1,6 +1,6 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
-NAME	=	BraiiiiiiinnnzzzZ
+NAME	=	braiiiiiiinnnzzzz
 HEADERS	=	Zombie.h
 SRC		=	Zombie.cpp randomChump.cpp newZombie.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)

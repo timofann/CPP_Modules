@@ -1,6 +1,6 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
-NAME	=	Harl2.0
+NAME	=	harl2.0
 HEADER	=	Harl.h
 SRC		=	Harl.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)

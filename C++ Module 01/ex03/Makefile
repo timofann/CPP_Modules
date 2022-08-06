@@ -1,6 +1,6 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
-NAME	=	UnnecessaryViolence
+NAME	=	unnecessaryViolence
 HEADERS	=	Weapon.h HumanA.h HumanB.h
 SRC		=	Weapon.cpp HumanA.cpp HumanB.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)
