@@ -5,14 +5,14 @@ int main(void) {
 	Harl harl;
 
 	std::cout << "\033[3;35m";
-	harl.complain("debug");
+	harl.complain("DEBUG");
 	std::cout << "\033[3;34m";
-	harl.complain("info");
+	harl.complain("INFO");
 	std::cout << "\033[3;36m";
-	harl.complain("warning");
+	harl.complain("WARNING");
 	std::cout << "\033[3;32m";
-	harl.complain("error");
+	harl.complain("ERROR");
 	std::cout << "\033[3;33m";
-	harl.complain("dedelmir");
+	harl.complain("DEDELMIR");
 	std::cout << "\033[0m";
 }
