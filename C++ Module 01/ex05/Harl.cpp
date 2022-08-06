@@ -1,33 +1,35 @@
 #include "Harl.h"
 #include <iostream>
 
-//t_pair *Harl::pairs = {{"debug", this.debug},
-//					   {"info", this.info},
-//					   {"warning", this.warning},
-//					   {"error", this.error}};
-
 Harl::Harl(void) {
-	pairs[0].f_name = "debug";
-	pairs[0].handler = &debug;
-	pairs[1].f_name = "info";
-	pairs[1].handler = &info;
-	pairs[2].f_name = "warning";
-	pairs[2].handler = &warning;
-	pairs[3].f_name = "error";
-	pairs[3].handler = &error;
+	this->pairs[0].m_name = "debug";
+	this->pairs[0].member = &Harl::debug;
+	this->pairs[1].m_name = "info";
+	this->pairs[1].member = &Harl::info;
+	this->pairs[2].m_name = "warning";
+	this->pairs[2].member = &Harl::warning;
+	this->pairs[3].m_name = "error";
+	this->pairs[3].member = &Harl::error;
 }
 
 Harl::~Harl(void) {}
 
 void	Harl::complain(std::string level) {
-	size_t i = 0;
-	while (pairs[i++].f_name != level);
-	pairs[i].handler();
+
+	size_t i;
+	for (i = 0; i < 4 && this->pairs[i].m_name != level; ++i) {};
+	if (i == 4) {
+		std::cout << "There is no words in the world to "
+					 "describe this situation!" << std::endl;
+	}
+	else {
+		(this->*pairs[i].member)();
+	}
 }
 
 void	Harl::debug(void) {
 	std::cout << "I love having extra bacon for my "
-				 "XL-double-cheese-triple-pickle-special- ketchup burger. "
+				 "XL-double-cheese-triple-pickle-special-ketchup burger. "
 				 "I really do!" << std::endl;
 }
 

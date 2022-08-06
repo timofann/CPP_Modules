@@ -3,25 +3,26 @@
 
 #include <string>
 
-typedef void (*PFunc)(void);
+class Harl;
 
 typedef struct s_pair {
-  	std::string	f_name;
-    PFunc		*handler;
+  	std::string	m_name;
+  	void (Harl::*member)(void);
 }	t_pair;
 
 class Harl {
- public:
+
+public:
   Harl(void);
   ~Harl(void);
-	void	complain(std::string level);
+  void	complain(std::string level);
 
  private:
-  	t_pair	pairs[4];
-	void			debug(void);
-	void			info(void);
-	void			warning(void);
-	void			error(void);
+    t_pair	pairs[4];
+	void	debug(void);
+	void	info(void);
+	void	warning(void);
+	void	error(void);
 };
 
 #endif
