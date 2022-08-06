@@ -1,7 +1,7 @@
 #include "Harl.h"
 #include <iostream>
 
-Harl::Harl(void) {
+Harl::Harl(std::string complain_lvl) {
 	this->pairs[0].m_name = "DEBUG";
 	this->pairs[0].member = &Harl::debug;
 	this->pairs[1].m_name = "INFO";
@@ -10,6 +10,10 @@ Harl::Harl(void) {
 	this->pairs[2].member = &Harl::warning;
 	this->pairs[3].m_name = "ERROR";
 	this->pairs[3].member = &Harl::error;
+
+	size_t i;
+	for (i = 0; i < 4 && this->pairs[i].m_name != complain_lvl; ++i);
+	_complain_lvl = i;
 }
 
 Harl::~Harl(void) {}
@@ -22,6 +26,10 @@ void	Harl::complain(std::string level) {
 		std::cout << "[EMPTY]" << std::endl;
 		std::cout << "There is no words in the world to "
 					 "describe this situation!" << std::endl;
+	}
+	else if (i < _complain_lvl && _complain_lvl != 4) {
+		std::cout << "[LOW_COMPLAIN_LVL]" << std::endl;
+		std::cout << "..." << std::endl;
 	}
 	else {
 		(this->*pairs[i].member)();

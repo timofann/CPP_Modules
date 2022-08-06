@@ -1,8 +1,13 @@
 #include "Harl.h"
 #include <iostream>
 
-int main(void) {
-	Harl harl;
+int main(int argc, char **argv) {
+
+	if (argc != 2) {
+		std::cout << "Usage : ./harlFilter <complain_lvl>" << std::endl;
+		return 0;
+	}
+	Harl harl(argv[1]);
 
 	std::cout << "\033[3;35m";
 	harl.complain("DEBUG");

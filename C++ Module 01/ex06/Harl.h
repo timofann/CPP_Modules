@@ -13,12 +13,13 @@ typedef struct s_pair {
 class Harl {
 
 public:
-  Harl(void);
+  Harl(std::string complain_lvl);
   ~Harl(void);
   void	complain(std::string level);
 
  private:
     t_pair	pairs[4];
+	size_t	_complain_lvl;
 	void	debug(void);
 	void	info(void);
 	void	warning(void);
