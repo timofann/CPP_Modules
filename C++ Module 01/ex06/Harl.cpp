@@ -17,7 +17,7 @@ Harl::~Harl(void) {}
 void	Harl::complain(std::string level) {
 
 	size_t i;
-	for (i = 0; i < 4 && this->pairs[i].m_name != level; ++i) {};
+	for (i = 0; i < 4 && this->pairs[i].m_name != level; ++i);
 	if (i == 4) {
 		std::cout << "[EMPTY]" << std::endl;
 		std::cout << "There is no words in the world to "
