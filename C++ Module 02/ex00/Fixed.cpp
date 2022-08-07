@@ -44,4 +44,3 @@ void Fixed::setRawBits(const int raw) {
               << "\033[0m" << std::endl;
     this->_value = raw;
 }
-
