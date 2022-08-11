@@ -12,6 +12,7 @@
 
 #ifndef FIXED_H
 #define FIXED_H
+#include <ostream>
 
 class Fixed {
 
@@ -21,15 +22,18 @@ private:
 
 public:
     Fixed(void);
-    Fixed(const int d);
-//    Fixed(const float f);
     Fixed(const Fixed &copy);
-    Fixed &operator=(const Fixed &assign);
+    Fixed(const int integer_number);
+    Fixed(const float floating_point);
     ~Fixed(void);
-    int getRawBits(void) const;
-    void setRawBits(int const raw);
-//    float toFloat( void ) const;
-    int toInt( void ) const;
+    Fixed   &operator=(const Fixed &assign);
+    int     getRawBits(void) const;
+    void    setRawBits(int const raw);
+    int     toInt(void) const;
+    float   toFloat(void) const;
+    void    printBits(const int bits);
 };
+
+std::ostream&   operator<<(std::ostream &os, const Fixed &output);
 
 #endif

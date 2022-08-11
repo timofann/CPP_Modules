@@ -1,6 +1,6 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
-NAME	=	myFirstClassInOrthodoxCanonicalForm
+NAME	=	towardsMoreUsefulFixedPointNumberClass
 HEADER	=	Fixed.h
 SRC		=	Fixed.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)

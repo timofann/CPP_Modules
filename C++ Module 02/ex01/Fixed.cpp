@@ -12,6 +12,7 @@
 
 #include "Fixed.h"
 #include <iostream>
+#include <cmath>
 
 const int Fixed::_fract_size = 8;
 
@@ -20,10 +21,6 @@ Fixed::Fixed(void) {
     std::cout << "\033[3;37m"
               << "Fixed default constructor called"
               << "\033[0m" << std::endl;
-}
-
-Fixed::Fixed(const int d) {
-    this->_value = (d & (1 << 31)) | (d << 8);
 }
 
 Fixed::~Fixed(void) {
@@ -47,20 +44,79 @@ Fixed::Fixed(const Fixed &copy) {
     *this = copy;
 }
 
-int Fixed::getRawBits(void) const {
+Fixed::Fixed(const int integer_number) {
     std::cout << "\033[3;37m"
-              << "getRawBits member function called"
+              << "Fixed integer constructor called"
               << "\033[0m" << std::endl;
+//    printBits(integer_number);
+
+    int sign = integer_number >> 31;
+    if (!sign)
+        this->_value = (~(511 << 23) & integer_number) << 8;
+    else
+        this->_value = (((511 << 23) | integer_number) << 8);
+//    printBits(this->_value);
+}
+
+Fixed::Fixed(const float floating_point) {
+    std::cout << "\033[3;37m"
+              << "Fixed floating-point constructor called"
+              << "\033[0m" << std::endl;
+//    printBits(*((int *)(&floating_point)));
+
+    int integer_number = roundf(floating_point);
+    int fractional_part = roundf((floating_point - integer_number) * 100)
+            * ((integer_number >= 0) * 2 - 1);
+    int sign = integer_number >> 31;
+    if (!sign)
+        this->_value
+            = ((~(511 << 23) & integer_number) << 8) | fractional_part;
+    else
+        this->_value
+            = (((511 << 23) | integer_number) << 8) | fractional_part;
+//    printBits(integer_number);
+//    printBits(fractional_part);
+//    printBits(this->_value);
+}
+
+int Fixed::getRawBits(void) const {
     return this->_value;
 }
 
 void Fixed::setRawBits(const int raw) {
-    std::cout << "\033[3;37m"
-              << "setRawBits member function called"
-              << "\033[0m" << std::endl;
     this->_value = raw;
 }
 
-int Fixed::toInt(void) const {
-    return ((this->_value >> 8) | (this->_value & (1 << 31)));
+int     Fixed::toInt(void) const {
+    int integer_number;
+    integer_number = this->_value >> 8;
+    return (integer_number);
+}
+
+float   Fixed::toFloat(void) const {
+    float   floating_number;
+    int fractional_part = this->_value & (255);
+    int integer_number = this->_value >> 8;
+    int sign = integer_number >> 31;
+    if (!sign)
+        floating_number = integer_number + (float)fractional_part / 100;
+    else
+        floating_number = integer_number - (float)fractional_part / 100;
+    return (floating_number);
+}
+
+void Fixed::printBits(const int bits) {
+    std::cout << "\033[37m";
+    for (int i = 31; i >= 0; --i) {
+        std::cout << ((bits >> i) & 1);
+    }
+    std::cout << "\033[0m" << std::endl;
+}
+
+std::ostream& operator<<(std::ostream &os, const Fixed &output) {
+    int fractional_part = output.getRawBits() & (255);
+    int integer_number = output.getRawBits() >> 8;
+	if (fractional_part % 10)
+        return os << integer_number << "." << fractional_part;
+	return os << integer_number << ".0" << fractional_part;
 }
