@@ -26,12 +26,15 @@ public:
     Fixed(const int integer_number);
     Fixed(const float floating_point);
     ~Fixed(void);
-    Fixed   &operator=(const Fixed &assign);
-    int     getRawBits(void) const;
-    void    setRawBits(int const raw);
-    int     toInt(void) const;
-    float   toFloat(void) const;
-    void    printBits(const int bits);
+	static int  getFractSize(void);
+    Fixed       &operator=(const Fixed &assign);
+    int         getRawBits(void) const;
+    void        setRawBits(int const raw);
+    int         toInt(void) const;
+    float       toFloat(void) const;
+	static int  getMaxNumber(int mem_size);
+	static int  getPower(void);
+    void        printBits(const int bits) const;
 };
 
 std::ostream&   operator<<(std::ostream &os, const Fixed &output);
