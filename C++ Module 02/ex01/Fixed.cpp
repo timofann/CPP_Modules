@@ -52,9 +52,11 @@ Fixed::Fixed(const int integer_number) {
 
     int sign = integer_number >> 31;
     if (!sign)
-        this->_value = (~(511 << 23) & integer_number) << 8;
+        this->_value = (~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				& integer_number) << Fixed::_fract_size;
     else
-        this->_value = (((511 << 23) | integer_number) << 8);
+        this->_value = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				| integer_number) << Fixed::_fract_size);
 //    printBits(this->_value);
 }
 
@@ -65,15 +67,17 @@ Fixed::Fixed(const float floating_point) {
 //    printBits(*((int *)(&floating_point)));
 
     int integer_number = roundf(floating_point);
-    int fractional_part = roundf((floating_point - integer_number) * 100)
-            * ((integer_number >= 0) * 2 - 1);
+    int fractional_part = roundf((floating_point - integer_number)
+			* Fixed::getPower()) * ((integer_number >= 0) * 2 - 1);
     int sign = integer_number >> 31;
     if (!sign)
         this->_value
-            = ((~(511 << 23) & integer_number) << 8) | fractional_part;
+            = ((~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+					& integer_number) << Fixed::_fract_size) | fractional_part;
     else
         this->_value
-            = (((511 << 23) | integer_number) << 8) | fractional_part;
+            = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+					| integer_number) << Fixed::_fract_size) | fractional_part;
 //    printBits(integer_number);
 //    printBits(fractional_part);
 //    printBits(this->_value);
@@ -89,23 +93,46 @@ void Fixed::setRawBits(const int raw) {
 
 int     Fixed::toInt(void) const {
     int integer_number;
-    integer_number = this->_value >> 8;
+    integer_number = this->_value >> Fixed::_fract_size;
     return (integer_number);
 }
 
 float   Fixed::toFloat(void) const {
     float   floating_number;
-    int fractional_part = this->_value & (255);
-    int integer_number = this->_value >> 8;
+    int fractional_part = this->_value & (Fixed::getMaxNumber(_fract_size));
+    int integer_number = this->_value >> Fixed::_fract_size;
+	int power = Fixed::getPower();
     int sign = integer_number >> 31;
     if (!sign)
-        floating_number = integer_number + (float)fractional_part / 100;
+        floating_number = integer_number + ((float)fractional_part / power);
     else
-        floating_number = integer_number - (float)fractional_part / 100;
+        floating_number = integer_number - (float)fractional_part / power;
     return (floating_number);
 }
 
-void Fixed::printBits(const int bits) {
+int Fixed::getMaxNumber(int mem_size) {
+	int max_number = 0;
+	int i = 0;
+	while (i < mem_size)
+	max_number |= (1 << i++);
+//	std::cout << "MAX_NUMBER " << max_number << std::endl;
+	return (max_number);
+}
+
+int Fixed::getPower(void) {
+	int max_number = getMaxNumber(_fract_size);
+	int power = 1;
+	while ((max_number / power) >= 10)
+		power *= 10;
+//	std::cout << "POWER " << power << std::endl;
+	return power;
+}
+
+int Fixed::getFractSize(void) {
+	return Fixed::_fract_size;
+}
+
+void Fixed::printBits(const int bits) const {
     std::cout << "\033[37m";
     for (int i = 31; i >= 0; --i) {
         std::cout << ((bits >> i) & 1);
@@ -114,9 +141,19 @@ void Fixed::printBits(const int bits) {
 }
 
 std::ostream& operator<<(std::ostream &os, const Fixed &output) {
-    int fractional_part = output.getRawBits() & (255);
-    int integer_number = output.getRawBits() >> 8;
-	if (fractional_part % 10)
-        return os << integer_number << "." << fractional_part;
-	return os << integer_number << ".0" << fractional_part;
+	int fractional_part = output.getRawBits()
+			& (Fixed::getMaxNumber(Fixed::getFractSize()));
+	int integer_number = output.getRawBits() >> Fixed::getFractSize();
+	int power = Fixed::getPower() / 10;
+
+	os << integer_number;
+	if (power)
+		os << ".";
+	while (power > 1 && !(fractional_part / power)) {
+		power /= 10;
+		os << "0";
+	}
+	if (power)
+		os << fractional_part;
+	return os;
 }
