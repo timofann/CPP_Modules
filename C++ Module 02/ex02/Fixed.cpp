@@ -1,0 +1,311 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dedelmir <dedelmir@student.21-school.ru    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/07 06:12:48 by dedelmir          #+#    #+#             */
+/*   Updated: 2022/08/07 06:13:42 by dedelmir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Fixed.h"
+#include <iostream>
+#include <cmath>
+
+const int Fixed::_fract_size = 8;
+
+Fixed::Fixed(void) {
+    this->_value = 0;
+    std::cout << "\033[3;37m"
+              << "Fixed default constructor called"
+              << "\033[0m" << std::endl;
+}
+
+Fixed::~Fixed(void) {
+    std::cout << "\033[3;37m"
+              << "Fixed destructor called"
+              << "\033[0m" << std::endl;
+}
+
+Fixed &Fixed::operator=(const Fixed &assign) {
+    std::cout << "\033[3;37m"
+              << "Fixed copy assignment operator called"
+              << "\033[0m" << std::endl;
+    this->_value = assign.getRawBits();
+    return *this;
+}
+
+Fixed::Fixed(const Fixed &copy) {
+    std::cout << "\033[3;37m"
+              << "Fixed copy constructor called"
+              << "\033[0m" << std::endl;
+    *this = copy;
+}
+
+Fixed::Fixed(const int integer_number) {
+    std::cout << "\033[3;37m"
+              << "Fixed integer constructor called"
+              << "\033[0m" << std::endl;
+//    printBits(integer_number);
+
+    int sign = integer_number >> 31;
+    if (!sign)
+        this->_value = (~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				& integer_number) << Fixed::_fract_size;
+    else
+        this->_value = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				| integer_number) << Fixed::_fract_size);
+//    printBits(this->_value);
+}
+
+Fixed::Fixed(const float floating_point) {
+    std::cout << "\033[3;37m"
+              << "Fixed floating-point constructor called"
+              << "\033[0m" << std::endl;
+//    printBits(*((int *)(&floating_point)));
+
+    int integer_number = (int)(floating_point);
+//	std::cout << integer_number << std::endl;
+    int fractional_part = roundf((floating_point - integer_number)
+			* Fixed::getPower()) * ((integer_number >= 0) * 2 - 1);
+    int sign = integer_number >> 31;
+    if (!sign)
+        this->_value
+            = ((~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+					& integer_number) << Fixed::_fract_size) | fractional_part;
+    else
+        this->_value
+            = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+					| integer_number) << Fixed::_fract_size) | fractional_part;
+//    printBits(integer_number);
+//    printBits(fractional_part);
+//    printBits(this->_value);
+}
+
+Fixed::Fixed(const int integer_part, const int fractional_part) {
+	std::cout << "\033[3;37m"
+	          << "Fixed integer/fractional parts constructor called"
+	          << "\033[0m" << std::endl;
+	if (integer_part >= 0)
+		this->_value = ((~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				& integer_part) << Fixed::_fract_size) | fractional_part;
+	else
+		this->_value = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+				| integer_part) << Fixed::_fract_size) | fractional_part;
+}
+
+int Fixed::getRawBits(void) const {
+    return this->_value;
+}
+
+void Fixed::setRawBits(const int raw) {
+    this->_value = raw;
+}
+
+bool Fixed::operator<(const Fixed &right) const {
+	int rfractional_part = right.getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size));
+	int rinteger_number = right.getRawBits() >> Fixed::_fract_size;
+	int lfractional_part = this->getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size));
+	int linteger_number = this->getRawBits() >> Fixed::_fract_size;
+	if (linteger_number < rinteger_number)
+		return (true);
+	else if (linteger_number == rinteger_number) {
+		if (lfractional_part < rfractional_part)
+			return (true);
+	}
+	return (false);
+}
+
+bool Fixed::operator>(const Fixed &right) const {
+	return (right < *this);
+}
+
+bool Fixed::operator==(const Fixed &right) const {
+	return (!(*this < right || *this > right));
+}
+
+bool Fixed::operator!=(const Fixed &right) const {
+	return (*this < right || *this > right);
+}
+
+bool Fixed::operator>=(const Fixed &right) const {
+	return (!(*this < right));
+}
+
+bool Fixed::operator<=(const Fixed &right) const {
+	return (!(right < *this));
+}
+
+Fixed Fixed::operator+(const Fixed &second_component) const {
+	int sfractional_part = second_component.getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size));
+	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
+	int ffractional_part = this->getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size));
+	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
+	int fractional_sum = ffractional_part + sfractional_part;
+	int integer_sum = finteger_number + sinteger_number;
+	if (fractional_sum * ((fractional_sum >= 0) * 2 - 1)
+			>= Fixed::getPower()) {
+		integer_sum += 1;
+		fractional_sum %= Fixed::getPower();
+	}
+	return Fixed(integer_sum, fractional_sum);
+}
+
+Fixed Fixed::operator-(const Fixed &second_component) const {
+	int fractional_dif;
+	int integer_dif;
+	int sfractional_part = second_component.getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
+	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
+	int ffractional_part = this->getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
+	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
+	integer_dif = finteger_number - sinteger_number;
+	if (*this < second_component) {
+		int tmp = ffractional_part;
+		ffractional_part = sfractional_part;
+		sfractional_part = tmp;
+	}
+	fractional_dif = ffractional_part - sfractional_part;
+	if (fractional_dif < 0) {
+		fractional_dif = Fixed::getPower() + ffractional_part - sfractional_part;
+		integer_dif = integer_dif - 1;
+	}
+	return Fixed(integer_dif, fractional_dif);
+}
+
+Fixed Fixed::operator*(const Fixed &second_component) const {
+	int fractional_mlt;
+	int integer_mlt;
+	int sfractional_part = second_component.getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
+	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
+	int ffractional_part = this->getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
+	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
+	integer_mlt = finteger_number * sinteger_number;
+	fractional_mlt = ffractional_part * sfractional_part;
+	integer_mlt += fractional_mlt / Fixed::getPower();
+	fractional_mlt %= Fixed::getPower();
+	return Fixed(integer_mlt, fractional_mlt);
+}
+
+Fixed Fixed::operator/(const Fixed &second_component) const {
+	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
+	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
+	int dividend = finteger_number * Fixed::getPower()
+			+ (this->getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size)))
+			* ((finteger_number >= 0) * 2 - 1);
+	int divider = sinteger_number * Fixed::getPower()
+			+ (second_component.getRawBits()
+			& (Fixed::getMaxNumber(Fixed::_fract_size)))
+			* ((sinteger_number >= 0) * 2 - 1);
+	int integer_div = (dividend / divider) / Fixed::getPower();
+	int fractional_div = (dividend / divider) % Fixed::getPower();
+	return Fixed(integer_div, fractional_div);
+}
+
+const Fixed Fixed::operator++(int) const {
+	Fixed temp = *this;
+	int fractional_part = this->_value & (Fixed::getMaxNumber(_fract_size));
+	int integer_number = this->_value >> Fixed::_fract_size;
+	fractional_part = fractional_part + 1;
+	integer_number += fractional_part / Fixed::getPower();
+	fractional_part %= Fixed::getPower();
+	if (integer_part >= 0)
+		this->_value = ((~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+		                 & integer_part) << Fixed::_fract_size) | fractional_part;
+	else
+		this->_value = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+		                 | integer_part) << Fixed::_fract_size) | fractional_part;
+	return temp;
+}
+
+Fixed &Fixed::operator++(void) const {
+	int fractional_part = this->_value & (Fixed::getMaxNumber(_fract_size));
+	int integer_number = this->_value >> Fixed::_fract_size;
+	fractional_part = fractional_part + 1;
+	integer_number += fractional_part / Fixed::getPower();
+	fractional_part %= Fixed::getPower();
+	if (integer_part >= 0)
+		this->_value = ((~(Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+		                 & integer_part) << Fixed::_fract_size) | fractional_part;
+	else
+		this->_value = (((Fixed::getMaxNumber(Fixed::_fract_size + 1) << 23)
+		                 | integer_part) << Fixed::_fract_size) | fractional_part;
+	return (*this);
+}
+
+int     Fixed::toInt(void) const {
+    int integer_number;
+    integer_number = this->_value >> Fixed::_fract_size;
+    return (integer_number);
+}
+
+float   Fixed::toFloat(void) const {
+    float   floating_number;
+    int fractional_part = this->_value & (Fixed::getMaxNumber(_fract_size));
+    int integer_number = this->_value >> Fixed::_fract_size;
+	int power = Fixed::getPower();
+    int sign = integer_number >> 31;
+    if (!sign)
+        floating_number = integer_number + ((float)fractional_part / power);
+    else
+        floating_number = integer_number - (float)fractional_part / power;
+    return (floating_number);
+}
+
+int Fixed::getMaxNumber(int mem_size) {
+	int max_number = 0;
+	int i = 0;
+	while (i < mem_size)
+	max_number |= (1 << i++);
+//	std::cout << "MAX_NUMBER " << max_number << std::endl;
+	return (max_number);
+}
+
+int Fixed::getPower(void) {
+	int max_number = getMaxNumber(_fract_size);
+	int power = 1;
+	while ((max_number / power) >= 10)
+		power *= 10;
+//	std::cout << "POWER " << power << std::endl;
+	return power;
+}
+
+int Fixed::getFractSize(void) {
+	return Fixed::_fract_size;
+}
+
+void Fixed::printBits(const int bits) const {
+    std::cout << "\033[37m";
+    for (int i = 31; i >= 0; --i) {
+        std::cout << ((bits >> i) & 1);
+    }
+    std::cout << "\033[0m" << std::endl;
+}
+
+std::ostream& operator<<(std::ostream &os, const Fixed &output) {
+	int fractional_part = output.getRawBits()
+			& (Fixed::getMaxNumber(Fixed::getFractSize()));
+	int integer_number = output.getRawBits() >> Fixed::getFractSize();
+	int power = Fixed::getPower() / 10;
+
+	os << integer_number;
+	if (power)
+		os << ".";
+	while (power > 1 && !(fractional_part / power)) {
+		power /= 10;
+		os << "0";
+	}
+	if (power)
+		os << fractional_part;
+	return os;
+}
