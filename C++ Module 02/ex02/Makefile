@@ -1,6 +1,6 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
-NAME	=	towardsMoreUsefulFixedPointNumberClass
+NAME	=	nowWereTalking
 HEADER	=	Fixed.h
 SRC		=	Fixed.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)
