@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
+/*   By: dedelmir <dedelmir@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:13:02 by dedelmir          #+#    #+#             */
 /*   Updated: 2022/08/07 06:13:45 by dedelmir         ###   ########.fr       */
