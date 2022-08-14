@@ -6,7 +6,7 @@
 /*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 06:12:48 by dedelmir          #+#    #+#             */
-/*   Updated: 2022/08/14 12:28:38 by dedelmir         ###   ########.fr       */
+/*   Updated: 2022/08/14 13:13:35 by dedelmir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ Fixed Fixed::operator*(const Fixed &second_component) const {
 	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
 	int mlt = sfractional_part + sinteger_number * Fixed::getPower();
-	int fractional_mlt = ffractional_part * mlt / Fixed::getPower();
+	int fractional_mlt = roundf((float)(ffractional_part * mlt) / (float)Fixed::getPower());
 	int integer_mlt = finteger_number * mlt;
 	fractional_mlt += integer_mlt % Fixed::getPower();
 	integer_mlt = integer_mlt / Fixed::getPower()
