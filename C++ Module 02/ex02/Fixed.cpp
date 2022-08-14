@@ -179,18 +179,19 @@ Fixed Fixed::operator*(const Fixed &second_component) const {
 }
 
 Fixed Fixed::operator/(const Fixed &second_component) const {
+	int sfractional_part = second_component.getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
+	int ffractional_part = this->getRawBits()
+	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
-	int dividend = finteger_number * Fixed::getPower()
-			+ (this->getRawBits()
-			& (Fixed::getMaxNumber(Fixed::_fract_size)))
-			* ((finteger_number >= 0) * 2 - 1);
-	int divider = sinteger_number * Fixed::getPower()
-			+ (second_component.getRawBits()
-			& (Fixed::getMaxNumber(Fixed::_fract_size)))
-			* ((sinteger_number >= 0) * 2 - 1);
-	int integer_div = (dividend / divider) / Fixed::getPower();
-	int fractional_div = (dividend / divider) % Fixed::getPower();
+	int div = sfractional_part + sinteger_number * Fixed::getPower();
+	int integer_div = (finteger_number * Fixed::getPower()) / div;
+	int fractional_div = roundf((float)((ffractional_part
+			+ ((finteger_number * Fixed::getPower()) % div))
+					* Fixed::getPower()) / (float)div);
+	integer_div += fractional_div / Fixed::getPower();
+	fractional_div %= Fixed::getPower();
 	return Fixed(integer_div, fractional_div);
 }
 
