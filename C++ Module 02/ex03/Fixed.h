@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedelmir <dedelmir@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 14:52:11 by dedelmir          #+#    #+#             */
-/*   Updated: 2022/08/07 06:13:48 by dedelmir         ###   ########.fr       */
+/*   Updated: 2022/08/13 22:57:48 by dedelmir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ public:
 	void                setRawBits(int const raw);
     int                 toInt(void) const;
     float               toFloat(void) const;
+	bool                isPositive(void) const;
+	bool                isNegative(void) const;
+//	Fixed               absoluteValue(void) const;
 	static Fixed        &min(Fixed &first, Fixed &second);
 	static const Fixed  &min(const Fixed &first, const Fixed &second);
 	static Fixed        &max(Fixed &first, Fixed &second);
