@@ -16,8 +16,8 @@
 
 Fixed triangle_sqr(const Point &a, const Point &b, const Point &c) {
 	std::cout << "\033[3;33mtriangle_sqr start\033[0m" << std::endl;
-	Fixed sqr = (((a.x() - c.y()) * (b.y() - a.y())) -
-	             ((b.y() - a.y()) * (a.x() - c.x())));
+	Fixed sqr = (((a.x() - c.x()) * (b.y() - a.y())) -
+	             ((b.x() - a.x()) * (a.y() - c.y())));
 	std::cout << "\033[3;33mtriangle_sqr end\033[0m" << std::endl;
 	return sqr;
 }
