@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>˙
+#include <iostream>
 
 typedef std::string::const_iterator StrIter;
 
