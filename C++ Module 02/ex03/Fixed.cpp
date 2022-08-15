@@ -120,7 +120,7 @@ bool Fixed::operator<=(const Fixed &right) const {
 
 /* ----------------------------------------------------- ARITHMETIC OPERATORS */
 
-Fixed Fixed::operator+(const Fixed &second_component) const {
+const Fixed Fixed::operator+(const Fixed &second_component) const {
 	int sfractional_part = second_component.getRawBits()
 			& (Fixed::getMaxNumber(Fixed::_fract_size));
 	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
@@ -137,7 +137,7 @@ Fixed Fixed::operator+(const Fixed &second_component) const {
 	return Fixed(integer_sum, fractional_sum);
 }
 
-Fixed Fixed::operator-(const Fixed &second_component) const {
+const Fixed Fixed::operator-(const Fixed &second_component) const {
 	int fractional_dif;
 	int integer_dif;
 	int sfractional_part = second_component.getRawBits()
@@ -161,7 +161,7 @@ Fixed Fixed::operator-(const Fixed &second_component) const {
 	return Fixed(integer_dif, fractional_dif);
 }
 
-Fixed Fixed::operator*(const Fixed &second_component) const {
+const Fixed Fixed::operator*(const Fixed &second_component) const {
 	int sfractional_part = second_component.getRawBits()
 	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;
@@ -179,7 +179,7 @@ Fixed Fixed::operator*(const Fixed &second_component) const {
 	return Fixed(integer_mlt, fractional_mlt);
 }
 
-Fixed Fixed::operator/(const Fixed &second_component) const {
+const Fixed Fixed::operator/(const Fixed &second_component) const {
 	int sfractional_part = second_component.getRawBits()
 	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int sinteger_number = second_component.getRawBits() >> Fixed::_fract_size;

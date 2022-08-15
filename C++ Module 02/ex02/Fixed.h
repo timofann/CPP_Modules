@@ -31,16 +31,16 @@ public:
     ~Fixed(void);
 
     Fixed               &operator=(const Fixed &assign);
-	bool                operator<(const Fixed &right) const;
-	bool                operator>(const Fixed &right) const;
-	bool                operator==(const Fixed &right) const;
-	bool                operator!=(const Fixed &right) const;
-	bool                operator>=(const Fixed &right) const;
-	bool                operator<=(const Fixed &right) const;
-	Fixed               operator+(const Fixed &second_component) const;
-	Fixed               operator-(const Fixed &second_component) const;
-	Fixed               operator*(const Fixed &second_component) const;
-	Fixed               operator/(const Fixed &second_component) const;
+	bool          operator<(const Fixed &right) const;
+	bool          operator>(const Fixed &right) const;
+	bool          operator==(const Fixed &right) const;
+	bool          operator!=(const Fixed &right) const;
+	bool          operator>=(const Fixed &right) const;
+	bool          operator<=(const Fixed &right) const;
+	const Fixed         operator+(const Fixed &second_component) const;
+	const Fixed         operator-(const Fixed &second_component) const;
+	const Fixed         operator*(const Fixed &second_component) const;
+	const Fixed         operator/(const Fixed &second_component) const;
 	const Fixed         operator++(int);
 	Fixed               &operator++(void);
 	const Fixed         operator--(int);
