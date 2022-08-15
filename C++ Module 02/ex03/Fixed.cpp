@@ -169,7 +169,8 @@ Fixed Fixed::operator*(const Fixed &second_component) const {
 	                       & (Fixed::getMaxNumber(Fixed::_fract_size));
 	int finteger_number = this->getRawBits() >> Fixed::_fract_size;
 	int mlt = sfractional_part + sinteger_number * Fixed::getPower();
-	int fractional_mlt = roundf((float)(ffractional_part * mlt) / (float)Fixed::getPower());
+	int fractional_mlt = roundf((float)(ffractional_part * mlt)
+			/ (float)Fixed::getPower());
 	int integer_mlt = finteger_number * mlt;
 	fractional_mlt += integer_mlt % Fixed::getPower();
 	integer_mlt = integer_mlt / Fixed::getPower()
