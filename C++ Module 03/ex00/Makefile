@@ -1,7 +1,7 @@
 CC		=	c++
 CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
 NAME	=	aaaaandOPEN
-HEADERS	=	ClapTrap.h
+HEADER	=	ClapTrap.hpp
 SRC		=	ClapTrap.cpp main.cpp
 OBJ		=	$(SRC:.cpp=.o)
 
@@ -12,7 +12,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
-%.o : %.cpp $(HEADERS)
+%.o : %.cpp $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
