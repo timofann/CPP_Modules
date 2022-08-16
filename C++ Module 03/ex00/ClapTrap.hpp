@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedelmir <dedelmir@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:20:18 by dedelmir          #+#    #+#             */
-/*   Updated: 2022/08/15 23:14:49 by dedelmir         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:39:23 by dedelmir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ private:
 	bool            isOutOfHitPoints(void) const;
 
 public:
-	ClapTrap(std::string name);
+	ClapTrap(const std::string &name);
 	ClapTrap(const ClapTrap &copy);
 	~ClapTrap(void);
 	ClapTrap &operator=(const ClapTrap &assign);

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dedelmir <dedelmir@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: dedelmir <dedelmir@student.21-school.ru>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:20:13 by dedelmir          #+#    #+#             */
-/*   Updated: 2022/08/15 23:14:51 by dedelmir         ###   ########.fr       */
+/*   Updated: 2022/08/16 17:39:24 by dedelmir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap(std::string name) : name_(std::string(name)),
-									   hit_points_(10),
-									   energy_points_(10),
-									   attack_damage_(0) {
+ClapTrap::ClapTrap(const std::string &name) : name_(std::string(name)),
+											  hit_points_(10),
+											  energy_points_(10),
+											  attack_damage_(0) {
 	std::cout << "\033[3;35mClapTrap \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
