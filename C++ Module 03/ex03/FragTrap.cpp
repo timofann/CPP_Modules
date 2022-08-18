@@ -33,6 +33,14 @@ FragTrap::~FragTrap() {
 	          << "\033[0m" << std::endl;
 }
 
+FragTrap &FragTrap::operator=(const FragTrap &assign) {
+	std::cout << "\033[3;32mFragTrap \033[3;37m"
+	          << "copy assignment operator called"
+	          << "\033[0m" << std::endl;
+	ClapTrap::operator = (assign);
+	return *this;
+}
+
 void    FragTrap::highFivesGuys(void) {
 	std::cout << "\033[3;32mFragTrap "
 	          << this->name_ << " 'Hey Guys! It's time to high five!'"
