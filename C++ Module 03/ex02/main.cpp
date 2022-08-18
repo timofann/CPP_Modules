@@ -18,7 +18,6 @@ int main(void) {
 	FragTrap august("August");
 	FragTrap george("George");
 
-
 	FragTrap sophie("Sophie");
 	sophie.highFivesGuys();
 
@@ -35,6 +34,10 @@ int main(void) {
 	sophie.beRepaired(40000);
 	std::cout << "(Steve) ";
 	steve.beRepaired(40000);
+
+	steve = august;
+	std::cout << "(Steve) ";
+	steve.highFivesGuys();
 
 	return 0;
 }

@@ -34,6 +34,14 @@ ScavTrap::~ScavTrap(void) {
 	          << "\033[0m" << std::endl;
 }
 
+ScavTrap &ScavTrap::operator=(const ScavTrap &assign) {
+	std::cout << "\033[3;36mScavTrap \033[3;37m"
+	          << "copy assignment operator called"
+	          << "\033[0m" << std::endl;
+	ClapTrap::operator = (assign);
+	return *this;
+}
+
 void        ScavTrap::attack(const std::string &target) {
 	if (this->isOutOfEnergy() || this->isOutOfHitPoints())
 		return;
