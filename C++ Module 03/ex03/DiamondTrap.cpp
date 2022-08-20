@@ -48,14 +48,14 @@ DiamondTrap::~DiamondTrap() {
 	          << "\033[0m" << std::endl;
 }
 
-DiamondTrap &DiamondTrap::operator=(const DiamondTrap &assign) {
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other) {
 	std::cout << "\033[3;31mDIAMONDTRAP \033[3;37m"
 	          << "COPY ASSIGNMENT OPERATOR CALLED"
 	          << "\033[0m" << std::endl;
-	if (&assign.name_ == &(this->name_))
+	if (this == &other)
 		return *this;
-	ClapTrap::operator = (assign);
-	this->name_ = assign.name_;
+	ClapTrap::operator = (other);
+	this->name_ = other.name_;
 	return *this;
 }
 

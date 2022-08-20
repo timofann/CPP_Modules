@@ -34,11 +34,11 @@ ScavTrap::~ScavTrap(void) {
 	          << "\033[0m" << std::endl;
 }
 
-ScavTrap &ScavTrap::operator=(const ScavTrap &assign) {
+ScavTrap &ScavTrap::operator=(const ScavTrap &other) {
 	std::cout << "\033[3;36mScavTrap \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
-	ClapTrap::operator = (assign);
+	ClapTrap::operator = (other);
 	return *this;
 }
 

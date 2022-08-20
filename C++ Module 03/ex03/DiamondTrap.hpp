@@ -26,7 +26,7 @@ public:
 	DiamondTrap(const std::string &name);
 	DiamondTrap(const DiamondTrap &copy);
 	~DiamondTrap();
-	DiamondTrap &operator=(const DiamondTrap &assign);
+	DiamondTrap &operator=(const DiamondTrap &other);
 	void        whoAmI(void);
 	using       FragTrap::attack;
 };

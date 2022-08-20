@@ -33,11 +33,11 @@ FragTrap::~FragTrap() {
 	          << "\033[0m" << std::endl;
 }
 
-FragTrap &FragTrap::operator=(const FragTrap &assign) {
+FragTrap &FragTrap::operator=(const FragTrap &other) {
 	std::cout << "\033[3;32mFragTrap \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
-	ClapTrap::operator = (assign);
+	ClapTrap::operator = (other);
 	return *this;
 }
 

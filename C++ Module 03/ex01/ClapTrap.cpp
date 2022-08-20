@@ -37,16 +37,16 @@ ClapTrap::~ClapTrap(void) {
 	          << "\033[0m" << std::endl;
 }
 
-ClapTrap &ClapTrap::operator=(const ClapTrap &assign) {
+ClapTrap &ClapTrap::operator=(const ClapTrap &other) {
 	std::cout << "\033[3;35mClapTrap \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
-	if (&assign.name_ == &(this->name_))
+	if (this == &other)
 		return *this;
-	this->name_ = std::string(assign.name_);
-	this->hit_points_ = assign.hit_points_;
-	this->energy_points_ = assign.energy_points_;
-	this->attack_damage_ = assign.attack_damage_;
+	this->name_ = std::string(other.name_);
+	this->hit_points_ = other.hit_points_;
+	this->energy_points_ = other.energy_points_;
+	this->attack_damage_ = other.attack_damage_;
 	return *this;
 }
 
