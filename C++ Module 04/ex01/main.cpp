@@ -13,7 +13,7 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include <stdio.h>
+#include <iostream>
 
 
 int main() {
