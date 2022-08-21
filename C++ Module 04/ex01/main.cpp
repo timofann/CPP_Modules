@@ -13,6 +13,7 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
+#include <stdio.h>
 
 
 int main() {
@@ -59,6 +60,16 @@ int main() {
 //	*cat = Dog();
 	((Cat *)cat)->printIdeas();
 	delete cat;
+
+	Cat cat1;
+	Cat cat2;
+	cat1.addIdea("there_is_an_idea");
+	cat2 = cat1;
+	cat1.addIdea("there_is_one_more_idea_here");
+	std::cout << "cat1" << std::endl;
+	cat1.printIdeas();
+	std::cout << "cat2" << std::endl;
+	cat2.printIdeas();
 
 	return 0;
 }
