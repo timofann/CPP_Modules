@@ -28,4 +28,7 @@ int	main(void) {
 	Zombie *my_fifth_zombie = newZombie("FifthZombieKate");
 	my_fifth_zombie->announce();
 	delete my_fifth_zombie;
+
+	Zombie my_6_zombie = Zombie("Zombie6Jacob");
+	my_6_zombie.announce();
 }

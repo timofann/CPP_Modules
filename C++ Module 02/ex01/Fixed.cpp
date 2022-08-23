@@ -65,8 +65,7 @@ Fixed::Fixed(const float floating_point) {
               << "Fixed floating-point constructor called"
               << "\033[0m" << std::endl;
 //    printBits(*((int *)(&floating_point)));
-
-    int integer_number = roundf(floating_point);
+    int integer_number = (int)(floating_point);
     int fractional_part = roundf((floating_point - integer_number)
 			* Fixed::getPower()) * ((integer_number >= 0) * 2 - 1);
     int sign = integer_number >> 31;

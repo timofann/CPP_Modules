@@ -25,13 +25,15 @@ AMateria &AMateria::operator=(const AMateria &other) {
 	          << "\033[0m" << std::endl;
 	if (this != &other)
 		this->type_ = other.type_;
+
 	return *this;
 }
 
-std::string const &AMateria::getType() const {
+std::string const &AMateria::getType(void) const {
 	return this->type_;
 }
 
-void AMateria::use(ICharacter &target) {
-
+void AMateria::use(ICharacter &target) const {
+	(void)target;
+	std::cout << "This code will never be running!" << std::endl;
 }
