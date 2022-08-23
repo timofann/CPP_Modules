@@ -1,5 +1,5 @@
 CC		=	c++
-CFLAGS	= 	-Wall -Wextra -Werror -std=c++98 -Wshadow
+CFLAGS	= 	-Wall -Wextra -Werror -std=c++98
 NAME	=	nowItsWeird
 HEADER	=	ClapTrap.hpp ScavTrap.hpp FragTrap.hpp DiamondTrap.hpp
 SRC		=	ClapTrap.cpp ScavTrap.cpp FragTrap.cpp DiamondTrap.cpp main.cpp

@@ -20,9 +20,9 @@ class WrongCat : public WrongAnimal {
 protected:
 	std::string type_;
 public:
-	WrongCat();
+	WrongCat(void);
 	WrongCat(const WrongCat &copy);
-	~WrongCat();
+	~WrongCat(void);
 	WrongCat    &operator=(const WrongCat &other);
 	void        makeSound(void) const;
 	std::string getType(void) const;

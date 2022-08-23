@@ -16,12 +16,14 @@
 #include <string>
 
 class WrongAnimal {
+
 protected:
 	std::string type_;
+
 public:
-	WrongAnimal();
+	WrongAnimal(void);
 	WrongAnimal(const WrongAnimal &copy);
-	~WrongAnimal();
+	~WrongAnimal(void);
 	WrongAnimal &operator=(const WrongAnimal &other);
 	void        makeSound(void) const;
 	std::string getType(void) const;

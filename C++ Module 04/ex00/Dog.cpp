@@ -14,7 +14,7 @@
 #include "Animal.hpp"
 #include "Dog.hpp"
 
-Dog::Dog() : Animal(), type_("dog") {
+Dog::Dog(void) : Animal(), type_("dog") {
 	std::cout << "\033[3;36mDog \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -26,7 +26,7 @@ Dog::Dog(const Dog &copy) : Animal(copy), type_(copy.type_) {
 	          << "\033[0m" << std::endl;
 }
 
-Dog::~Dog() {
+Dog::~Dog(void) {
 	std::cout << "\033[3;36mDog \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
@@ -43,12 +43,12 @@ Dog &Dog::operator=(const Dog &other) {
 	return *this;
 }
 
-void    Dog::makeSound(void) const {
+void Dog::makeSound(void) const {
 	std::cout << "\033[3;36mDog "
 	          << "Bark-bark!"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     Dog::getType(void) const {
+std::string Dog::getType(void) const {
 	return this->type_;
 }

@@ -14,7 +14,7 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat() : WrongAnimal(), type_("wrong_cat") {
+WrongCat::WrongCat(void) : WrongAnimal(), type_("wrong_cat") {
 	std::cout << "\033[3;31mWrongCat \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -28,7 +28,7 @@ WrongCat::WrongCat(const WrongCat &copy) :
 	          << "\033[0m" << std::endl;
 }
 
-WrongCat::~WrongCat() {
+WrongCat::~WrongCat(void) {
 	std::cout << "\033[3;31mWrongCat \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
@@ -45,12 +45,12 @@ WrongCat &WrongCat::operator=(const WrongCat &other) {
 	return *this;
 }
 
-void    WrongCat::makeSound(void) const {
+void WrongCat::makeSound(void) const {
 	std::cout << "\033[3;31mWrongCat "
 	          << "Meooooooooooowwwwwwwwwwwwwwww"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     WrongCat::getType(void) const {
+std::string WrongCat::getType(void) const {
 	return this->type_;
 }

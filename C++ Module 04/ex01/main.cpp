@@ -16,7 +16,7 @@
 #include <iostream>
 
 
-int main() {
+int main(void) {
 
 	Animal *animals[20];
 	for (int i = 0; i < 10; i += 2) {

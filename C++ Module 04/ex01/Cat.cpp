@@ -15,7 +15,7 @@
 #include "Brain.hpp"
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), brain_(new Brain()), type_("cat") {
+Cat::Cat(void) : Animal(), brain_(new Brain()), type_("cat") {
 	std::cout << "\033[3;32mCat \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -32,7 +32,7 @@ Cat::Cat(const Cat &copy) : Animal(copy),
 		this->brain_->addIdea(copy.brain_->getIdea(i));
 }
 
-Cat::~Cat() {
+Cat::~Cat(void) {
 	std::cout << "\033[3;32mCat \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
@@ -54,17 +54,17 @@ Cat &Cat::operator=(const Cat &other) {
 	return *this;
 }
 
-void    Cat::makeSound(void) const {
+void Cat::makeSound(void) const {
 	std::cout << "\033[3;32mCat "
 	          << "Meooooooooooowwwwwwwwwwwwwwww"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     Cat::getType(void) const {
+std::string Cat::getType(void) const {
 	return this->type_;
 }
 
-void    Cat::printIdeas(void) {
+void Cat::printIdeas(void) {
 	int ideas_num = this->brain_->getIdeasNum();
 	for (int i = 0; i < ideas_num; ++i) {
 		std::cout << "\033[3;32mCat "
@@ -78,6 +78,6 @@ void    Cat::printIdeas(void) {
 	}
 }
 
-void    Cat::addIdea(std::string idea) {
+void Cat::addIdea(const std::string &idea) {
 	this->brain_->addIdea(idea);
 }

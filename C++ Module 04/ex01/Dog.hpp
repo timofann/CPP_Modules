@@ -18,19 +18,22 @@
 #include "Brain.hpp"
 
 class Dog : public Animal {
+
 private:
-	Brain   *brain_;
+	Brain       *brain_;
+
 protected:
 	std::string type_;
+
 public:
-	Dog();
+	Dog(void);
 	Dog(const Dog &copy);
-	~Dog();
+	~Dog(void);
 	Dog         &operator=(const Dog &other);
 	void        makeSound(void) const;
 	std::string getType(void) const;
 	void        printIdeas(void);
-	void        addIdea(std::string idea);
+	void        addIdea(const std::string &idea);
 };
 
 #endif

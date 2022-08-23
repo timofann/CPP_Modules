@@ -18,10 +18,13 @@
 #include "Brain.hpp"
 
 class Cat : public Animal {
+
 private:
-	Brain   *brain_;
+	Brain       *brain_;
+
 protected:
 	std::string type_;
+
 public:
 	Cat();
 	Cat(const Cat &copy);
@@ -30,7 +33,7 @@ public:
 	void        makeSound(void) const;
 	std::string getType(void) const;
 	void        printIdeas(void);
-	void        addIdea(std::string idea);
+	void        addIdea(const std::string &idea);
 };
 
 #endif

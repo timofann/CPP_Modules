@@ -13,7 +13,7 @@
 #include <iostream>
 #include "Animal.hpp"
 
-Animal::Animal() : type_("animal") {
+Animal::Animal(void) : type_("animal") {
 	std::cout << "\033[3;35mAnimal \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -25,13 +25,13 @@ Animal::Animal(const Animal &copy) : type_(copy.type_) {
 	          << "\033[0m" << std::endl;
 }
 
-Animal::~Animal() {
+Animal::~Animal(void) {
 	std::cout << "\033[3;35mAnimal \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
 }
 
-Animal  &Animal::operator=(const Animal &other) {
+Animal &Animal::operator=(const Animal &other) {
 	std::cout << "\033[3;35mAnimal \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
@@ -40,6 +40,6 @@ Animal  &Animal::operator=(const Animal &other) {
 	return *this;
 }
 
-std::string     Animal::getType(void) const {
+std::string Animal::getType(void) const {
 	return this->type_;
 }

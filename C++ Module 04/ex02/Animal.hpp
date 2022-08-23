@@ -16,12 +16,14 @@
 #include <string>
 
 class Animal {
+
 protected:
-	std::string type_;
+	std::string     type_;
+
 public:
-	Animal();
+	Animal(void);
 	Animal(const Animal &copy);
-	virtual        ~Animal();
+	virtual        ~Animal(void);
 	Animal          &operator=(const Animal &other);
 	virtual void    makeSound(void) const = 0;
 	std::string     getType(void) const;

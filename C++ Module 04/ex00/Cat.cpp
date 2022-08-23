@@ -14,7 +14,7 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 
-Cat::Cat() : Animal(), type_("cat") {
+Cat::Cat(void) : Animal(), type_("cat") {
 	std::cout << "\033[3;32mCat \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -26,7 +26,7 @@ Cat::Cat(const Cat &copy) : Animal(copy), type_(copy.type_) {
 	          << "\033[0m" << std::endl;
 }
 
-Cat::~Cat() {
+Cat::~Cat(void) {
 	std::cout << "\033[3;32mCat \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
@@ -43,12 +43,12 @@ Cat &Cat::operator=(const Cat &other) {
 	return *this;
 }
 
-void    Cat::makeSound(void) const {
+void Cat::makeSound(void) const {
 	std::cout << "\033[3;32mCat "
 	          << "Meooooooooooowwwwwwwwwwwwwwww"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     Cat::getType(void) const {
+std::string Cat::getType(void) const {
 	return this->type_;
 }

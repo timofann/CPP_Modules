@@ -19,18 +19,18 @@
 
 class Cat : public Animal {
 private:
-	Brain   *brain_;
+	Brain       *brain_;
 protected:
 	std::string type_;
 public:
-	Cat();
+	Cat(void);
 	Cat(const Cat &copy);
-	~Cat();
+	~Cat(void);
 	Cat         &operator=(const Cat &other);
 	void        makeSound(void) const;
 	std::string getType(void) const;
 	void        printIdeas(void);
-	void        addIdea(std::string idea);
+	void        addIdea(const std::string &idea);
 };
 
 #endif

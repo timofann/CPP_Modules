@@ -13,7 +13,7 @@
 #include <iostream>
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal() : type_("wrong_animal") {
+WrongAnimal::WrongAnimal(void) : type_("wrong_animal") {
 	std::cout << "\033[3;31mWrongAnimal \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -25,13 +25,13 @@ WrongAnimal::WrongAnimal(const WrongAnimal &copy) : type_(copy.type_) {
 	          << "\033[0m" << std::endl;
 }
 
-WrongAnimal::~WrongAnimal() {
+WrongAnimal::~WrongAnimal(void) {
 	std::cout << "\033[3;31mWrongAnimal \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
 }
 
-WrongAnimal  &WrongAnimal::operator=(const WrongAnimal &other) {
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
 	std::cout << "\033[3;31mWrongAnimal \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
@@ -40,12 +40,12 @@ WrongAnimal  &WrongAnimal::operator=(const WrongAnimal &other) {
 	return *this;
 }
 
-void    WrongAnimal::makeSound(void) const {
+void WrongAnimal::makeSound(void) const {
 	std::cout << "\033[3;31mWrongAnimal "
 	          << "MewteberkawMoChickChibbrr"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     WrongAnimal::getType(void) const {
+std::string WrongAnimal::getType(void) const {
 	return this->type_;
 }

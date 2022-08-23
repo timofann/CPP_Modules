@@ -17,10 +17,12 @@
 #include "WrongCat.hpp"
 #include <iostream>
 
-int main() {
+int main(void) {
+
 	const Animal* meta = new Animal();
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
+
 	std::cout << dog->getType() << " " << std::endl;
 	std::cout << cat->getType() << " " << std::endl;
 	std::cout << ((Dog *)dog)->getType() << " " << std::endl;

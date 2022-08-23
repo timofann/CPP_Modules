@@ -17,12 +17,14 @@
 #include "Animal.hpp"
 
 class Cat : public Animal {
+
 protected:
 	std::string type_;
+
 public:
-	Cat();
+	Cat(void);
 	Cat(const Cat &copy);
-	~Cat();
+	~Cat(void);
 	Cat         &operator=(const Cat &other);
 	void        makeSound(void) const;
 	std::string getType(void) const;

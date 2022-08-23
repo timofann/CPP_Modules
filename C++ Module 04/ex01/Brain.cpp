@@ -14,7 +14,7 @@
 #include <iostream>
 #include <string>
 
-Brain::Brain() {
+Brain::Brain(void) {
 	std::cout << "\033[3;34mBrain \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -30,13 +30,13 @@ Brain::Brain(const Brain &copy) {
 	this->ideas_num_ = copy.ideas_num_;
 }
 
-Brain::~Brain() {
+Brain::~Brain(void) {
 	std::cout << "\033[3;34mBrain \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
 }
 
-Brain   &Brain::operator=(const Brain &other) {
+Brain &Brain::operator=(const Brain &other) {
 	std::cout << "\033[3;34mBrain \033[3;37m"
 	          << "copy assignment operator called"
 	          << "\033[0m" << std::endl;
@@ -48,7 +48,7 @@ Brain   &Brain::operator=(const Brain &other) {
 	return *this;
 }
 
-void    Brain::addIdea(std::string idea) {
+void Brain::addIdea(const std::string &idea) {
 	if (this->ideas_num_ == MAX_IDEAS_COUNT) {
 		for (int i = 0; i < MAX_IDEAS_COUNT - 1; ++i)
 			this->ideas_[i] = this->ideas_[i + 1];
@@ -72,6 +72,6 @@ int Brain::getIdeasNum(void) {
 	return this->ideas_num_;
 }
 
-void    Brain::setIdeasNum(int num) {
+void Brain::setIdeasNum(int num) {
 	this->ideas_num_ = num;
 }

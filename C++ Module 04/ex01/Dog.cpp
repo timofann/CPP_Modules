@@ -15,7 +15,7 @@
 #include "Brain.hpp"
 #include "Dog.hpp"
 
-Dog::Dog() : Animal(), brain_(new Brain()), type_("dog") {
+Dog::Dog(void) : Animal(), brain_(new Brain()), type_("dog") {
 	std::cout << "\033[3;36mDog \033[3;37m"
 	          << "constructor called"
 	          << "\033[0m" << std::endl;
@@ -32,7 +32,7 @@ Dog::Dog(const Dog &copy) : Animal(copy),
 		this->brain_->addIdea(copy.brain_->getIdea(i));
 }
 
-Dog::~Dog() {
+Dog::~Dog(void) {
 	std::cout << "\033[3;36mDog \033[3;37m"
 	          << "destructor called"
 	          << "\033[0m" << std::endl;
@@ -54,17 +54,17 @@ Dog &Dog::operator=(const Dog &other) {
 	return *this;
 }
 
-void    Dog::makeSound(void) const {
+void Dog::makeSound(void) const {
 	std::cout << "\033[3;36mDog "
 	          << "Bark-bark!"
 	          << "\033[0m" << std::endl;
 }
 
-std::string     Dog::getType(void) const {
+std::string Dog::getType(void) const {
 	return this->type_;
 }
 
-void    Dog::printIdeas(void) {
+void Dog::printIdeas(void) {
 	int ideas_num = this->brain_->getIdeasNum();
 	for (int i = 0; i < ideas_num; ++i) {
 		std::cout << "\033[3;36mDog "
@@ -78,6 +78,6 @@ void    Dog::printIdeas(void) {
 	}
 }
 
-void    Dog::addIdea(std::string idea) {
+void Dog::addIdea(const std::string &idea) {
 	this->brain_->addIdea(idea);
 }

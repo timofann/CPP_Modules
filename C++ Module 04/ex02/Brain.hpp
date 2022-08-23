@@ -19,15 +19,17 @@
 #define MAX_IDEAS_COUNT 100
 
 class Brain {
+
 private:
 	std::string ideas_[MAX_IDEAS_COUNT];
 	int         ideas_num_;
+
 public:
-	Brain();
+	Brain(void);
 	Brain(const Brain &copy);
-	~Brain();
+	~Brain(void);
 	Brain       &operator=(const Brain &other);
-	void        addIdea(std::string idea);
+	void        addIdea(const std::string &idea);
 	std::string getIdea(int i);
 	int         getIdeasNum(void);
 	void        setIdeasNum(int num);
