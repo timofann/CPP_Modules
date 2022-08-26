@@ -16,7 +16,7 @@ Base *generate() {
 			return (new B());
 		}
 		default : {
-			std::cout << "\033[3;33mC-class' instance has generated\033[0m" << std::endl;
+			std::cout << "\033[3;32mC-class' instance has generated\033[0m" << std::endl;
 			return (new C());
 		}
 	}
@@ -28,7 +28,7 @@ void identify(Base* p) {
 	else if (dynamic_cast<B *>(p))
 		std::cout << "\033[3;35mPointer to B identified successfully\033[0m" << std::endl;
 	else if (dynamic_cast<C *>(p))
-		std::cout << "\033[3;33mPointer to C identified successfully\033[0m" << std::endl;
+		std::cout << "\033[3;32mPointer to C identified successfully\033[0m" << std::endl;
 }
 
 void identify(Base& p) {
@@ -40,28 +40,30 @@ void identify(Base& p) {
 			(void)dynamic_cast<B &>(p);
 			std::cout << "\033[3;35mB-class instance identified successfully\033[0m" << std::endl;
 		} catch (...) {
-			std::cout << "\033[3;33mC-class instance identified successfully\033[0m" << std::endl;
+			std::cout << "\033[3;32mC-class instance identified successfully\033[0m" << std::endl;
 		}
 	}
 }
 
 int main() {
-	Base *b1 = generate(); usleep(1500000);
-	Base *b2 = generate(); usleep(900000);
-	Base *b3 = generate(); usleep(400000);
-	Base *b4 = generate();
 
-	std::cout << std::endl;
-
+	Base *b1 = generate();
 	identify(b1);
-	identify(b2);
-	identify(b3);
-	identify(b4);
-
-	std::cout << std::endl;
-
 	identify(*b1);
+
+	usleep(1500000);
+
+	Base *b2 = generate();
+	identify(b2);
 	identify(*b2);
+
+	usleep(900000);
+
+	Base *b3 = generate();
+	identify(b3);
 	identify(*b3);
-	identify(*b4);
+
+	delete b1;
+	delete b2;
+	delete b3;
 }
